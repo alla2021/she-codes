@@ -2,6 +2,10 @@ body {
    font-family: sans-serif;
    padding: 0 20px;
  }
+
+ .container {
+  max-width: 800px;
+ }
  
  .section {
    display: flex;
@@ -28,11 +32,6 @@ body {
    padding-bottom: 10px;
  }
  
- .current-temp {
-   color: blue;
-   font-size: 40px;
- }
- 
  .day-wrapper {
    border: 1px solid gray;
    border-radius: 10px;
@@ -48,18 +47,23 @@ body {
  }
  .current-temp {
    padding: 0 5px;
- }
- 
- .active {
-   color: blue;
- }
- 
- .disable {
-   font-size: 25px;
    color: black;
+   font-size: 40px;
  }
- 
+
+ .active {
+  color: blue;
+}
+
  .current-temp-list {
    display: flex;
  }
  
+ .weather-info {
+  color: grey;
+  font-size: 12px;
+ }
+
+ .content{
+  display: none;
+ }

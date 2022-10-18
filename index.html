@@ -13,72 +13,81 @@
     <link href="src/style/main.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <h1>App</h1>
-    <div class="section">
-      <div class="row search-field">
-        <form id="search-form">
-          <div class="row text-center">
-            <div class="col-9">
-              <input
-                id="search-input"
-                type="search"
-                class="form-control"
-                placeholder="enter city"
-              />
-            </div>
-            <div class="col-3">
-              <input type="submit" class="btn btn-info">Search</input>
-            </div>
-          </div>
-        </form>
-      </div>
+    <div class="intro">
       <div class="container">
-        <div class="row">
-          <div class="col text-center">
-            <h2 class="current-city" id='city'>Kyiv</h2>
-            <div class="current-time" id="current-date">Mon</div>
-            <div class="current-time">Mostly cloudy</div>
-          </div>
-          <div class="col text-center">
-            <div>☁︎</div>
-            <div class="current-temp-list">
-              <div class="current-temp" id='current-temperature'>18</div>
-              <div class="current-temp scale active" id='btn-celsius'><sup>℃</sup></div>
-              <div class="current-temp scale disable" id='btn-fahrenheit'><sup>°F</sup></div>
+        <div class="row search-field">
+          <form id="search-form">
+            <div class="row text-center">
+              <div class="col-9">
+                <input
+                  id="search-input"
+                  type="search"
+                  class="form-control"
+                  placeholder="enter city"
+                />
+              </div>
+              <div class="col-3">
+                <button type="submit" class="btn btn-info">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="container">
+          <div class="row content">
+            <div class="col text-center">
+              <h2 class="current-city" id='city'>Kyiv</h2>
+              <div class="current-time" id="current-day">Monday</div>
+              <div class="weather-info" id="weather-description">Mostly cloudy</div>            
+              <div class="weather-info">Humidity:
+                <span id="humidity">18 km/h</span>
+              </div>
+              <div class="weather-info">Wild:
+                <span id="wind-speed">18 km/h</span>
+              </div>
+
+            </div>
+            <div class="col text-center">
+              <img class="action-icon"></img>
+              <div class="current-temp-list">
+                <div class="current-temp" id='current-temperature'>18</div>
+                <div class="current-temp scale active" id='btn-celsius'><sup>℃</sup></div>
+                <div class="current-temp scale disable" id='btn-fahrenheit'><sup>°F</sup></div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="container text-center">
-        <div class="row">
-          <div class="col day-wrapper">
-            <div class="day">Mon</div>
-            <div class="icon">☁︎</div>
-            <div class="temp">10 ℃</div>
-          </div>
-          <div class="col day-wrapper">
-            <div class="day">Tue</div>
-            <div class="icon">☁︎</div>
-            <div class="temp">10 ℃</div>
-          </div>
-          <div class="col day-wrapper">
-            <div class="day">Wed</div>
-            <div class="icon">☁︎</div>
-            <div class="temp">10 ℃</div>
-          </div>
-          <div class="col day-wrapper">
-            <div class="day">Thu</div>
-            <div class="icon">☁︎</div>
-            <div class="temp">10 ℃</div>
-          </div>
-          <div class="col day-wrapper">
-            <div class="day">Fri</div>
-            <div class="icon">☁︎</div>
-            <div class="temp">10 ℃</div>
+        <div class="container text-center" id="list">
+          <div class="row">
+            <div class="col day-wrapper">
+              <div class="day">Mon</div>
+              <div class="icon">☁︎</div>
+              <div class="temp">10 ℃</div>
+            </div>
+            <div class="col day-wrapper">
+              <div class="day">Tue</div>
+              <div class="icon">☁︎</div>
+              <div class="temp">10 ℃</div>
+            </div>
+            <div class="col day-wrapper">
+              <div class="day">Wed</div>
+              <div class="icon">☁︎</div>
+              <div class="temp">10 ℃</div>
+            </div>
+            <div class="col day-wrapper">
+              <div class="day">Thu</div>
+              <div class="icon">☁︎</div>
+              <div class="temp">10 ℃</div>
+            </div>
+            <div class="col day-wrapper">
+              <div class="day">Fri</div>
+              <div class="icon">☁︎</div>
+              <div class="temp">10 ℃</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    
     <script src="src/js/main.js"></script>
   </body>
 </html>
