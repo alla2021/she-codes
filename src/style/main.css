@@ -64,6 +64,6 @@ body {
   font-size: 12px;
  }
 
- .content{
+ .content,.fuature-weather{
   display: none;
  }
