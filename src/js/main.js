@@ -128,12 +128,18 @@ async function getFutureWeather(lat,lon) {
 function renderListWithWeather (data) {
  const slicedArray = data.slice(0, 5);
  let item = slicedArray.map(((item, i)=> (
-  //console.log(item.weather[0].description)
   `<div class="col day-wrapper">
+  <div class='row'>
+  <div class='col-icon col'>
   <div class="weather-info">${fahrenheitToCelsius(item.temp.day)} °C</div>
   <div class="weather-info">${item.temp.day} °F</div>
+  </div>
+<div class='col-icon col'>
 <img class='icon' src=http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png></img>
 <div class="weather-info">${capitalizeFirstLetter(item.weather[0].description)}</div>
+
+</div>
+</div>
 <div class="weather-info">Humidity:
 <span>${item.humidity} %</span>
 </div>
@@ -142,6 +148,6 @@ function renderListWithWeather (data) {
 </div>
 </div>`
 )));
-  weatherFutereList.innerHTML=item;
+  weatherFutereList.innerHTML=item.join('');
 }
 
