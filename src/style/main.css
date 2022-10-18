@@ -6,8 +6,13 @@ body {
  .container {
   max-width: 800px;
  }
+
+ .row {
+  display: flex;
+ }
  
  .intro {
+  min-height: 80vh;
   background-image: url("../images/bg.jpg");
   background-size: cover;
   background-position: center; 
@@ -35,6 +40,10 @@ body {
    font-style: italic;
    padding-bottom: 10px;
  }
+
+ .future-weather{
+  display: flex;
+ }
  
  .day-wrapper {
    border: 1px solid rgb(255, 255, 255);
@@ -43,12 +52,12 @@ body {
    padding: 15px 5px;
  }
  
- .day-wrapper:hover {
+ /*.day-wrapper:hover {
    cursor: pointer;
    scale: 1.2;
    font-weight: bold;
    color: blueviolet;
- }
+ }*/
  .current-temp {
    padding: 0 5px;
    color: black;

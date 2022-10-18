@@ -1,8 +1,10 @@
+const KEY_API = `2c12b249a669b7804fa1acafecfc7274`;
+
 const city = document.querySelector("#city");
 const currentTemp = document.querySelector("#current-temperature");
 const input = document.querySelector("#search-input");
 const btnFarenheit = document.querySelector('#btn-fahrenheit')
-const weatherFuatereList = document.querySelector('#list')
+const weatherFutereList = document.querySelector('#list')
 btnFarenheit.addEventListener('click',convertTemp)
 const btnCelsius = document.querySelector('#btn-celsius')
 btnCelsius.addEventListener('click',searchCity)
@@ -19,6 +21,7 @@ function searchCity(event) {
     displayWeatherInfo.style.display = 'flex'
      const data = await getData(input.value);
      if (input.value) {
+      await getFutureWeather(data.coord.lat,data.coord.lon)
       btnCelsius.classList.add('active')
       btnFarenheit.classList.remove('active')
       let str = `${input.value}`
@@ -43,8 +46,8 @@ function searchCity(event) {
     if (input.value) {
     const data = await getData(input.value);
     currentTemp.innerHTML = `${Math.round(celsiusToFahrenheit(data.main.temp))}`;
-    btnFarenheit.classList.add('active')
-    btnCelsius.classList.remove('active')
+    btnFarenheit.classList.add('active');
+    btnCelsius.classList.remove('active');
   }
   })();
 }
@@ -52,20 +55,15 @@ function searchCity(event) {
  function capitalizeFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
-
- const weatherApp = [{main:'Rain', img:''},{main: 'Clear', img:''}]
  
  const form = document.querySelector("#search-form");
  form.addEventListener("submit", searchCity);
  
  const getData = async (val) => {
    try {
-     const KEY_API = `2c12b249a669b7804fa1acafecfc7274`;
      let URL = `https://api.openweathermap.org/data/2.5/weather?q=${val}&units=metric&appid=${KEY_API}`;
      const res = await fetch(URL);
      const data = await res.json();
-     console.log(data, 'aaaa')
-     console.log(data.weather[0].icon);
      return data;
    } catch (err) {
      console.log(err);
@@ -104,15 +102,46 @@ if (time) {
  
  function celsiusToFahrenheit(celsius) {
     let fahrenheit = celsius * 9/5 + 32;
-
     return fahrenheit;
  }
+  
+ function fahrenheitToCelsius(fahrenheit) {
+  let celsius = (fahrenheit - 32) * 5/9;;
+  return Math.round(celsius);
+}
 
-//function renderListWithWeather (data) {
-// console.log(data, 'render')
-//  const item = `<div class="col day-wrapper">
-//  <div class="day">Tue</div>
-//  <img class="icon">☁︎</img>
-//  <div class="temp">10 ℃</div>
-//</div>`
-//}
+
+async function getFutureWeather(lat,lon) {
+  const API_key = `6a0bac9dced487830ce6066218a5481c`
+  try {
+    const URL =`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${API_key}`
+    const res = await fetch(URL);
+    const futureData = await res.json();
+    console.log(futureData);
+    return  renderListWithWeather (futureData.daily,'jjjjjjjjjjjjjjj')
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+function renderListWithWeather (data) {
+ const slicedArray = data.slice(0, 5);
+ let item = slicedArray.map(((item, i)=> (
+  //console.log(item.weather[0].description)
+  `<div class="col day-wrapper">
+  <div class="weather-info">${fahrenheitToCelsius(item.temp.day)} °C</div>
+  <div class="weather-info">${item.temp.day} °F</div>
+<img class='icon' src=http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png></img>
+<div class="weather-info">${capitalizeFirstLetter(item.weather[0].description)}</div>
+<div class="weather-info">Humidity:
+<span>${item.humidity} %</span>
+</div>
+<div class="weather-info">Wild:
+<span>${item.wind_speed} km/h</span>
+</div>
+</div>`
+)));
+  weatherFutereList.innerHTML=item;
+}
+
