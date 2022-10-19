@@ -1,88 +1,88 @@
 body {
-   font-family: sans-serif;
-   padding: 0 20px;
- }
+  font-family: sans-serif;
+  padding: 0 20px;
+}
 
- .container {
+.container {
   max-width: 800px;
- }
+}
 
- .row {
+.row {
   display: flex;
- }
- 
- .intro {
+}
+
+.intro {
   min-height: 80vh;
   background-image: url("../images/bg.jpg");
   background-size: cover;
-  background-position: center; 
+  background-position: center;
   background-repeat: no-repeat;
-   display: flex;
-   align-items: center;
-   flex-direction: column;
-   min-height: 350px;
-   border-radius: 10px;
-   width:100% ;
- }
- 
- .search-field {
-   margin: 20px 0;
-   color: blue;
- }
- 
- .current-city {
-   font-size: 45px;
-   font-weight: bold;
- }
- 
- .current-time {
-   color: gray;
-   font-style: italic;
-   padding-bottom: 10px;
- }
-
- .future-weather{
   display: flex;
- }
- 
- .day-wrapper {
-   border: 1px solid rgb(255, 255, 255);
-   border-radius: 10px;
-   margin: 0px 5px;
-   padding: 15px 5px;
- }
- 
- /*.day-wrapper:hover {
+  align-items: center;
+  flex-direction: column;
+  min-height: 350px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.search-field {
+  margin: 20px 0;
+  color: blue;
+}
+
+.current-city {
+  font-size: 45px;
+  font-weight: bold;
+}
+
+.current-time {
+  color: gray;
+  font-style: italic;
+  padding-bottom: 10px;
+}
+
+.future-weather {
+  display: flex;
+}
+
+.day-wrapper {
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  margin: 0px 5px;
+  padding: 15px 5px;
+}
+
+/*.day-wrapper:hover {
    cursor: pointer;
    scale: 1.2;
    font-weight: bold;
    color: blueviolet;
  }*/
- .current-temp {
-   padding: 0 5px;
-   color: black;
-   font-size: 40px;
- }
+.current-temp {
+  padding: 0 5px;
+  color: black;
+  font-size: 40px;
+}
 
- .active {
+.active {
   color: blue;
 }
 
- .current-temp-list {
-   display: flex;
- }
- 
- .weather-info {
-  color:white;
+.current-temp-list {
+  display: flex;
+}
+
+.weather-info {
+  color: white;
   font-size: 12px;
- }
+}
 
- .content,.fuature-weather{
+.content,
+.fuature-weather {
   display: none;
- }
+}
 
-
- .icon {
+.icon {
   width: 50px;
   height: 50px;
- }
+}
