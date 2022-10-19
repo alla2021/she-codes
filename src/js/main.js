@@ -26,7 +26,7 @@ function searchCity(event) {
       btnFarenheit.classList.remove('active')
       let str = `${input.value}`
        city.innerHTML = capitalizeFirstLetter(str)
-       currentDay.innerHTML=`${formatDate()}`
+       currentDay.innerHTML=`${formatDate(new Date())}`
        humidity.innerHTML=`${data.main.humidity} %`
        windSpeed.innerHTML=`${data.wind.speed} km/h`
        currentWeaterDescripton.innerHTML=`${capitalizeFirstLetter(data.weather[0].description)}`
@@ -71,8 +71,8 @@ function searchCity(event) {
  };
  
  //
- function formatDate() {
-  let now = new Date();
+ function formatDate(d) {
+  let now = new Date(d * 1000);
   const daysNames = [
     "Sunday",
     "Monday",
@@ -94,7 +94,7 @@ function searchCity(event) {
   let myDate = `${day} ${hoursValue}:${minutesValue}`;
   return myDate;
 }
-let value = formatDate();
+let value = formatDate(new Date());
 const time = document.querySelector("#current-date");
 if (time) {
   time.innerHTML = `${value}`;
@@ -118,7 +118,7 @@ async function getFutureWeather(lat,lon) {
     const res = await fetch(URL);
     const futureData = await res.json();
     console.log(futureData);
-    return  renderListWithWeather (futureData.daily,'jjjjjjjjjjjjjjj')
+    return  renderListWithWeather (futureData.daily)
   } catch (err) {
     console.log(err);
   }
@@ -126,10 +126,15 @@ async function getFutureWeather(lat,lon) {
 
 
 function renderListWithWeather (data) {
+
  const slicedArray = data.slice(0, 5);
+ let forecast = slicedArray.dt;
+ console.log(forecast)
  let item = slicedArray.map(((item, i)=> (
   `<div class="col day-wrapper">
+
   <div class='row'>
+  <div class="weather-forecast-date">${formatDate(slicedArray[i].dt)}</div>
   <div class='col-icon col'>
   <div class="weather-info">${fahrenheitToCelsius(item.temp.day)} °C</div>
   <div class="weather-info">${item.temp.day} °F</div>
