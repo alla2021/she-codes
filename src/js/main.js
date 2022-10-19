@@ -14,14 +14,16 @@ const windSpeed = document.querySelector("#wind-speed");
 const humidity = document.querySelector("#humidity");
 const iconWeather = document.querySelector(".action-icon");
 const displayWeatherInfo = document.querySelector(".content");
+let data;
+let weatherForecast;
 
 function searchCity(event) {
   event.preventDefault();
   (async () => {
     displayWeatherInfo.style.display = "flex";
-    const data = await getData(input.value);
     if (input.value) {
-      await getFutureWeather(data.coord.lat, data.coord.lon);
+      data = await getData(input.value); 
+      weatherForecast = await getFutureWeather(data.coord.lat, data.coord.lon);
       btnCelsius.classList.add("active");
       btnFarenheit.classList.remove("active");
       let str = `${input.value}`;
@@ -46,7 +48,7 @@ function searchCity(event) {
 function convertTemp() {
   (async () => {
     if (input.value) {
-      const data = await getData(input.value);
+      //const data = await getData(input.value);
       currentTemp.innerHTML = `${Math.round(
         celsiusToFahrenheit(data.main.temp)
       )}`;
@@ -105,7 +107,7 @@ if (time) {
 
 function celsiusToFahrenheit(celsius) {
   let fahrenheit = (celsius * 9) / 5 + 32;
-  return fahrenheit;
+  return Math.round(fahrenheit);
 }
 
 function fahrenheitToCelsius(fahrenheit) {
@@ -133,30 +135,24 @@ function renderListWithWeather(data) {
   let item = slicedArray.map(
     (item, i) =>
       `<div class="col day-wrapper">
-
-  <div class='row'>
-  <div class="weather-forecast-date">${formatDate( new Date(slicedArray[i].dt * 1000))}</div>
-  <div class='col-icon col'>
-  <div class="weather-info">${fahrenheitToCelsius(item.temp.day)} °C</div>
-  <div class="weather-info">${item.temp.day} °F</div>
-  </div>
-<div class='col-icon col'>
-<img class='icon' src=http://openweathermap.org/img/wn/${
-        item.weather[0].icon
-      }@2x.png></img>
-<div class="weather-info">${capitalizeFirstLetter(
-        item.weather[0].description
-      )}</div>
-
-</div>
-</div>
-<div class="weather-info">Humidity:
-<span>${item.humidity} %</span>
-</div>
-<div class="weather-info">Wild:
-<span>${item.wind_speed} km/h</span>
-</div>
-</div>`
+          <div class='row'>
+            <div class="weather-forecast-date">${formatDate(new Date(slicedArray[i].dt * 1000))}</div>
+            <div class='col-icon col'>
+                <div class="weather-info">${fahrenheitToCelsius(item.temp.day)} °C</div>
+                <div class="weather-info">${item.temp.day} °F</div>
+           </div>
+            <div class='col-icon col'>
+              <img class='icon' src=http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png />
+              <div class="weather-info">${capitalizeFirstLetter(item.weather[0].description)}</div>
+            </div>
+          </div>
+          <div class="weather-info">Humidity:
+            <span>${item.humidity} %</span>
+          </div>
+          <div class="weather-info">Wild:
+            <span>${item.wind_speed} km/h</span>
+          </div>
+      </div>`
   );
   weatherFutereList.innerHTML = item.join("");
 }
